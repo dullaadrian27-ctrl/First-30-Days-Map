@@ -1,0 +1,1028 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>First 30 Days Map</title></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&display=swap">
+<style>
+:root{
+  --purple:#9895d3; --purple-mid:#6f6bb8; --purple-deep:#3d3973; --purple-ink:#2b2856;
+  --lav:#f3f2fc; --lav-2:#e6e4f7; --gold:#d09963; --gold-ink:#9a6330; --gold-soft:#fcf5ed;
+  --ink:#24223b; --muted:#66637f; --line:#e4e2ef; --white:#ffffff; --page:#ffffff;
+  --ok:#2e8a58; --ok-soft:#e8f5ee; --warn:#b97a2c; --warn-soft:#fbf1e3; --bad:#b04848; --bad-soft:#f9e9e9;
+  --display:"Playfair Display", Georgia, "Times New Roman", serif;
+  --body:"DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+h1,h2,h3,h4{font-family:var(--display);color:var(--purple-ink);text-wrap:balance;margin:0;line-height:1.15}
+p{margin:0}
+a{color:var(--purple-deep)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* top bar */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1040px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brandmark{font-family:var(--display);font-style:italic;font-size:17px;color:var(--purple-deep);white-space:nowrap}
+.brandmark b{font-style:normal;color:var(--gold-ink);font-weight:600}
+.prog{flex:1 1 200px;display:flex;align-items:center;gap:10px;min-width:0}
+.prog-track{flex:1;height:8px;border-radius:99px;background:var(--lav-2);overflow:hidden}
+.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--gold));transition:width .4s}
+.prog-num{font-weight:700;font-size:14px;color:var(--purple-deep);font-variant-numeric:tabular-nums;min-width:3.2em;text-align:right}
+.saved{font-size:12px;color:var(--muted);white-space:nowrap}
+.btn{font-family:var(--body);font-weight:600;font-size:14px;border-radius:8px;padding:9px 14px;border:1px solid var(--purple-deep);background:var(--purple-deep);color:#fff;cursor:pointer}
+.btn:hover{background:var(--purple-ink)}
+.btn.ghost{background:transparent;color:var(--purple-deep)}
+.btn.ghost:hover{background:var(--lav)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#2b1c0c}
+.btn.gold:hover{background:#c38a52}
+.btn.sm{padding:5px 10px;font-size:12.5px}
+
+.wrap{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:0 40px}
+
+/* hero */
+.hero{padding-block:52px 34px;border-bottom:1px solid var(--line);display:grid;gap:18px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink);font-weight:700}
+.hero h1{font-style:italic;font-weight:500;font-size:clamp(44px,8vw,86px);letter-spacing:-.01em;color:var(--purple-deep)}
+.hero h1 span{display:block;font-style:normal;font-weight:600;font-size:.42em;letter-spacing:.02em;color:var(--purple-ink);margin-top:8px}
+.hero .lede{font-size:clamp(18px,2.3vw,21px);max-width:60ch;color:var(--ink)}
+.byline{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.byline .dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.center-name{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.center-name label{font-weight:600;font-size:14px;color:var(--purple-deep)}
+.center-name input{max-width:340px}
+
+/* nav */
+.toc{display:flex;flex-wrap:wrap;gap:8px;padding-block:18px}
+.toc a{font-size:13px;font-weight:600;text-decoration:none;padding:6px 12px;border-radius:99px;border:1px solid var(--line);color:var(--purple-deep);background:#fff}
+.toc a:hover{border-color:var(--purple)}
+
+/* sections */
+.sec{padding-block:46px 10px;display:grid;gap:22px}
+.sec-head{display:grid;gap:8px}
+.sec-head .part{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--gold-ink)}
+.sec-head h2{font-style:italic;font-weight:500;font-size:clamp(32px,5vw,50px);color:var(--purple-deep)}
+.sec-head p{max-width:66ch;color:var(--muted);font-size:17px}
+h3{font-size:24px;font-weight:600}
+h4{font-family:var(--body);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple-deep);font-weight:700}
+
+/* signature pieces */
+.exbar{background:var(--lav);border-radius:10px;padding:14px 18px;display:flex;gap:12px;align-items:flex-start;font-size:15.5px}
+.exbar .tag{flex:none;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;background:var(--purple);color:#fff;border-radius:6px;padding:4px 8px;margin-top:2px}
+.callout{border:2px solid var(--gold);border-radius:12px;padding:20px 22px;background:var(--gold-soft);display:grid;gap:10px}
+.callout h3{font-size:21px}
+.callout ol,.callout ul{margin:0;padding-left:22px;display:grid;gap:4px}
+.quote{background:var(--purple-deep);color:#fff;border-radius:14px;padding:30px 30px;display:grid;gap:10px}
+.quote p{font-family:var(--display);font-style:italic;font-size:clamp(20px,2.8vw,28px);line-height:1.35;color:#fff}
+.quote .small{font-family:var(--body);font-style:normal;font-size:14px;color:#d9d7f3}
+.quote strong{color:#f1c89e;font-weight:600}
+
+/* inputs */
+input[type=text],input[type=number],input[type=date],textarea,select{font-family:var(--body);font-size:15px;color:var(--ink);background:#fff;border:1px solid var(--line);border-bottom:2px solid var(--purple);border-radius:6px;padding:8px 10px;width:100%}
+textarea{min-height:70px;resize:vertical;line-height:1.5}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--purple-mid);box-shadow:0 0 0 3px var(--lav-2)}
+input::placeholder,textarea::placeholder{color:#a3a0ba}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:8px;cursor:pointer}
+.chk:hover{background:var(--lav)}
+.chk input{appearance:none;flex:none;width:22px;height:22px;border:2px solid var(--purple);border-radius:5px;margin-top:1px;cursor:pointer;display:grid;place-content:center;background:#fff}
+.chk input:checked{background:var(--purple-deep);border-color:var(--purple-deep)}
+.chk input:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.chk input:checked + span{color:var(--muted)}
+.chk span b{color:var(--purple-ink)}
+
+/* readiness */
+.ready-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4px 14px;border:1px solid var(--line);border-radius:12px;padding:10px}
+.readout{border-radius:12px;padding:18px 20px;display:grid;gap:6px;border:1px solid var(--line)}
+.readout .lvl{font-family:var(--display);font-size:22px;font-weight:600}
+.readout.r-green{background:var(--ok-soft);border-color:#bfe2cd}.readout.r-green .lvl{color:var(--ok)}
+.readout.r-gold{background:var(--warn-soft);border-color:#efd6b3}.readout.r-gold .lvl{color:var(--warn)}
+.readout.r-red{background:var(--bad-soft);border-color:#ecc7c7}.readout.r-red .lvl{color:var(--bad)}
+
+/* stage table + timeline */
+.tl{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.tl-step{border-top:4px solid var(--purple);padding:12px 12px 14px;background:var(--lav);border-radius:0 0 10px 10px;display:grid;gap:4px;align-content:start}
+.tl-step:nth-child(even){border-top-color:var(--gold)}
+.tl-step .n{font-size:11px;letter-spacing:.14em;font-weight:700;color:var(--gold-ink)}
+.tl-step .t{font-family:var(--display);font-size:22px;font-weight:600;color:var(--purple-deep)}
+.tl-step .w{font-size:13px;color:var(--muted)}
+.tl-step .q{font-family:var(--display);font-style:italic;font-size:15.5px;color:var(--ink)}
+@media (max-width:760px){.tl{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.tl{grid-template-columns:1fr}}
+
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th{background:var(--lav);color:var(--purple-deep);text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:11px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.stage{font-weight:700;color:var(--purple-deep)}
+
+/* stage cards */
+.stage{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.stage-top{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:22px 24px;border-bottom:1px solid var(--line);align-items:center}
+.stage-num{font-family:var(--display);font-style:italic;font-size:56px;line-height:1;color:var(--purple)}
+.stage-top h3{font-size:30px;font-weight:600;color:var(--purple-deep)}
+.stage-top .when{font-size:13.5px;color:var(--gold-ink);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.stage-body{padding:22px 24px;display:grid;gap:18px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:760px){.two{grid-template-columns:1fr}.stage-top{grid-template-columns:1fr;gap:6px}}
+.goal{font-family:var(--display);font-style:italic;font-size:22px;color:var(--purple-ink);line-height:1.3}
+.wonder{font-size:14px;color:var(--muted)}
+.listbox{display:grid;gap:0}
+.sample{border-left:3px solid var(--purple);background:#fbfbfe;padding:12px 16px;border-radius:0 8px 8px 0;font-size:15px;color:var(--ink)}
+.sample .lbl{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--purple-deep);margin-bottom:4px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vs div{border-radius:8px;padding:12px 14px;font-size:14.5px}
+.vs .no{background:var(--bad-soft)}
+.vs .yes{background:var(--ok-soft)}
+.vs b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.vs .no b{color:var(--bad)} .vs .yes b{color:var(--ok)}
+@media (max-width:560px){.vs{grid-template-columns:1fr}}
+
+/* map table */
+.map table{min-width:1180px}
+.map td input[type=text]{min-width:150px;font-size:13.5px;padding:6px 8px}
+.map td.tp{min-width:190px}
+.map td.tp b{display:block;color:var(--purple-ink)}
+.map td.tp small{color:var(--muted);font-size:12.5px;line-height:1.4;display:block;margin-top:2px}
+.map td.when{white-space:nowrap;font-weight:600;color:var(--gold-ink);font-size:13px}
+.map td.c{text-align:center}
+.tog{appearance:none;width:30px;height:30px;border-radius:50%;border:2px dashed #c4c1dd;cursor:pointer;display:inline-grid;place-content:center;background:#fff;font-size:15px}
+.tog.mem:checked{border:2.5px solid var(--bad);background:var(--bad-soft)}
+.tog.mem:checked::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--bad)}
+.tog.me{border-radius:8px}
+.tog.me::after{content:"\2606";color:#c4c1dd;font-size:17px;line-height:1}
+.tog.me:checked{border:2.5px solid var(--gold);background:var(--gold-soft)}
+.tog.me:checked::after{content:"\2605";color:var(--gold-ink)}
+.box{appearance:none;width:24px;height:24px;border:2px solid var(--purple);border-radius:5px;cursor:pointer;display:inline-grid;place-content:center;background:#fff}
+.box:checked{background:var(--ok);border-color:var(--ok)}
+.box:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.gap{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gap-tile{border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:2px}
+.gap-tile .v{font-family:var(--display);font-size:44px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.gap-tile .k{font-size:13.5px;color:var(--muted)}
+.gap-tile.m .v{color:var(--bad)} .gap-tile.s .v{color:var(--gold-ink)} .gap-tile.i .v{color:var(--ok)}
+.gap-msg{font-family:var(--display);font-style:italic;font-size:20px;color:var(--purple-ink)}
+
+/* scripts */
+.pers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;background:var(--lav);padding:18px;border-radius:12px}
+.pers label{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--purple-deep)}
+.scripts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.script{border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:10px;align-content:start}
+.script-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.script-top .s-when{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-ink)}
+.script-top h4{margin-top:2px}
+.script-text{font-size:15px;line-height:1.6;white-space:pre-line}
+.script-text .v{background:var(--lav-2);border-radius:4px;padding:0 3px;color:var(--purple-ink);font-weight:600}
+.script-text .v.empty{background:var(--gold-soft);color:var(--gold-ink)}
+
+/* snapshot */
+.snap{border:2px solid var(--purple);border-radius:14px;padding:22px 24px;display:grid;gap:14px}
+.snap-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px}
+.snap-head h3{font-style:italic;font-weight:500}
+.snap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 16px}
+.snap-grid label{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--purple-deep)}
+.snap-grid label.full{grid-column:1/-1}
+
+/* check-in */
+.qs{display:grid;gap:14px}
+.q{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:start}
+.q .qn{font-family:var(--display);font-style:italic;font-size:30px;line-height:1;color:var(--purple)}
+.q .qt{font-weight:600;color:var(--purple-ink);font-size:16px}
+.q .qt em{display:block;font-weight:400;font-style:normal;font-size:13.5px;color:var(--gold-ink)}
+.q textarea{grid-column:2}
+.route{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:700px){.route{grid-template-columns:1fr}}
+.route-card{border-radius:12px;padding:18px 20px;display:grid;gap:10px;border:1px solid var(--line)}
+.route-card.adv{background:var(--ok-soft);border-color:#bfe2cd}
+.route-card.rep{background:var(--warn-soft);border-color:#efd6b3}
+.route-card h3{font-size:21px}
+.pick{display:flex;gap:8px;flex-wrap:wrap}
+.pick label{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:7px 14px;cursor:pointer;background:#fff;font-weight:600;font-size:14px}
+.pick input{accent-color:var(--purple-deep)}
+
+/* promise audit */
+.pa td{min-width:200px}
+.pa td:last-child{min-width:150px}
+.strength-sum{display:flex;gap:10px;flex-wrap:wrap}
+.pill{font-size:13px;font-weight:700;border-radius:99px;padding:5px 12px}
+.pill.g{background:var(--ok-soft);color:var(--ok)} .pill.y{background:var(--warn-soft);color:var(--warn)} .pill.r{background:var(--bad-soft);color:var(--bad)}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:760px){.calc{grid-template-columns:1fr}}
+.calc-in{display:grid;gap:12px;border:1px solid var(--line);border-radius:12px;padding:18px}
+.calc-in label{display:grid;gap:4px;font-size:13.5px;font-weight:600;color:var(--purple-deep)}
+.calc-in small{font-weight:400;color:var(--muted)}
+.calc-out{background:var(--purple-deep);color:#fff;border-radius:12px;padding:22px;display:grid;gap:14px;align-content:start}
+.calc-out .big{font-family:var(--display);font-size:clamp(40px,6vw,58px);font-weight:600;line-height:1;color:#f1c89e;font-variant-numeric:tabular-nums}
+.calc-out .row{display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,.18);padding-top:10px;font-size:14.5px}
+.calc-out .row b{font-variant-numeric:tabular-nums}
+.calc-out .note{font-size:13px;color:#d9d7f3}
+.example{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-ink)}
+
+/* dashboard */
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.metric{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.metric label{font-size:13px;font-weight:600;color:var(--purple-deep)}
+.metric .res{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.metric .res b{font-variant-numeric:tabular-nums}
+
+/* install plan */
+.plan{display:grid;gap:12px}
+.plan-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+@media (max-width:640px){.plan-row{grid-template-columns:1fr}}
+.plan-head{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--purple-deep)}
+@media (max-width:640px){.plan-head{display:none}}
+
+/* closing */
+.close{margin-top:56px;text-align:center;padding-block:48px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:6px}
+.close p{font-family:var(--display);font-size:clamp(24px,4.4vw,40px);font-weight:600;color:var(--purple-deep);line-height:1.2}
+.close p:nth-child(2){color:var(--gold-ink);font-style:italic;font-weight:500}
+/* pathway */
+.pathway{margin-top:30px;display:grid;gap:22px}
+.pw-head{display:grid;gap:10px}
+.pw-head h2{font-style:italic;font-weight:500;font-size:clamp(30px,4.6vw,46px);color:var(--purple-deep)}
+.pw-head p{max-width:68ch;font-size:17px;color:var(--ink)}
+.build-word{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.build-word div{border:1px solid var(--line);border-radius:12px;padding:14px 12px;display:grid;gap:4px;justify-items:start;background:#fff}
+.build-word .bl{font-family:var(--display);font-size:44px;font-weight:700;line-height:1;color:var(--purple)}
+.build-word .bt{font-size:13.5px;font-weight:600;color:var(--purple-ink);line-height:1.3}
+.build-word .on{border:2px solid var(--gold);background:var(--gold-soft)}
+.build-word .on .bl{color:var(--gold-ink)}
+@media (max-width:640px){.build-word{grid-template-columns:1fr 1fr}.build-word div:last-child{grid-column:1/-1}}
+.umbrella{text-align:center;display:grid;gap:4px;padding-block:10px}
+.u-words{font-family:var(--display);font-size:clamp(20px,3.4vw,30px);font-weight:600;color:var(--purple-deep);letter-spacing:.02em}
+.u-words i{color:var(--gold);font-style:normal;font-weight:400;padding-inline:4px}
+.u-sub{font-family:var(--display);font-style:italic;color:var(--gold-ink);font-size:18px}
+.tiers-wrap{overflow-x:auto;padding-bottom:4px}
+.tiers{display:grid;grid-template-columns:repeat(5,minmax(190px,1fr));gap:10px;min-width:980px}
+.tier{border:1px solid var(--line);border-top:4px solid var(--purple);border-radius:0 0 12px 12px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:10px;background:#fff}
+.tier:nth-child(even){border-top-color:var(--gold)}
+.tier .t-role{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-ink)}
+.tier h3{font-size:21px;color:var(--purple-deep)}
+.tier .t-for{font-size:13.5px;color:var(--muted);line-height:1.45}
+.tier .t-res{font-family:var(--display);font-style:italic;font-size:16px;color:var(--purple-ink);line-height:1.35}
+.tier ul{margin:0;padding-left:18px;font-size:13.5px;display:grid;gap:3px;align-content:start}
+.tier .t-price{margin-top:auto;font-family:var(--display);font-weight:700;font-size:22px;color:var(--purple-deep);border-top:1px solid var(--line);padding-top:10px}
+.tier .t-price small{display:block;font-family:var(--body);font-weight:500;font-size:12px;color:var(--muted)}
+.tier.feature{border:2px solid var(--gold);border-top-width:4px;background:var(--gold-soft);position:relative}
+.t-flag{justify-self:start;width:max-content;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;background:var(--gold);color:#2b1c0c;border-radius:5px;padding:3px 8px}
+.experience{background:var(--lav);border:1px solid var(--lav-2);border-radius:14px;padding:22px 24px;display:grid;grid-template-columns:1fr;gap:18px;align-items:center}
+@media (max-width:700px){.experience{grid-template-columns:1fr}}
+.x-kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-ink)}
+.x-title{font-family:var(--display);font-style:italic;font-size:clamp(24px,3.6vw,32px);color:var(--purple-deep);margin-top:4px}
+.x-steps{font-weight:700;font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--purple-ink);margin-top:6px}
+.x-steps i{color:var(--gold);font-style:normal;padding-inline:3px}
+.x-note{font-size:14.5px;color:var(--muted);margin-top:6px;max-width:60ch}
+.x-price{display:grid;gap:8px}
+.x-price span{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;display:flex;justify-content:space-between;gap:16px;font-size:14px;font-weight:600;color:var(--purple-ink);white-space:nowrap}
+.x-price b{font-family:var(--display);font-size:20px;color:var(--purple-deep)}
+.capacity{display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--purple);border-bottom:2px solid var(--purple)}
+.capacity span{text-align:center;padding:14px 8px;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--purple-deep)}
+.capacity span+span{border-left:1px solid var(--line)}
+@media (max-width:640px){.capacity{grid-template-columns:1fr 1fr}.capacity span{border-left:0!important;border-bottom:1px solid var(--line)}.capacity span:last-child{grid-column:1/-1;border-bottom:0}}
+.contact{border:2px solid var(--gold);border-radius:16px;padding:24px 26px;display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:center}
+@media (max-width:760px){.contact{grid-template-columns:1fr}}
+.contact h3{font-style:italic;font-weight:500;font-size:28px}
+.contact p{color:var(--muted);margin-top:6px}
+.contact-box{display:grid;gap:8px;justify-items:start}
+.contact-box .email{font-family:var(--display);font-size:clamp(17px,2.4vw,21px);font-weight:600;color:var(--purple-deep);text-decoration:none;word-break:break-all;user-select:all}
+.site-sm{font-size:13px;color:var(--muted)}
+.book{text-decoration:none;font-size:16px;padding:13px 20px;display:inline-block}
+.book-url{word-break:break-all;user-select:all}
+footer{text-align:center;padding-block:28px 10px;font-size:13px;color:var(--muted);display:grid;gap:4px}
+footer .site{font-family:var(--display);font-style:italic;font-size:18px;color:var(--purple-deep)}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--purple-ink);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:40;max-width:calc(100% - 32px)}
+.confirm{display:flex;gap:8px;align-items:center;font-size:13px;flex-wrap:wrap}
+</style>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brandmark">Consulting with <b>AJR</b></div>
+    <div class="prog" aria-label="Your progress">
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+      <div class="prog-num" id="progNum">0%</div>
+    </div>
+    <span class="saved" id="savedNote">Auto-saves as you type</span>
+    <button class="btn gold" id="pdfBtn" type="button">Download my PDF</button>
+    <span id="resetWrap"><button class="btn ghost sm" id="resetBtn" type="button">Reset</button></span>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="hero">
+  <div class="eyebrow">Closing the Marketing-to-Experience Gap™ &nbsp;·&nbsp; Summit Workbook</div>
+  <h1>The First 30 Days<span>Family Experience Map™</span></h1>
+  <p class="lede">Turn enrollment into belonging, trust and retention. This is the operating system for the most expensive 30 days in your business... the days where a family decides whether your marketing told the truth.</p>
+  <div class="byline"><span>Aliya Johnson-Roberts</span><span class="dot"></span><span>Childcare CEO, 2 STAR-4 centers, 257 licensed seats</span><span class="dot"></span><span>consultingwithajr.com</span></div>
+  <div class="center-name"><label for="centerName">Your center:</label><input type="text" id="centerName" class="f" placeholder="Type your center's name"></div>
+</section>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#ready">Are You Ready?</a><a href="#stages">The 5 Stages</a><a href="#playbook">Stage Playbook</a><a href="#map">The Map</a><a href="#scripts">Script Bank</a><a href="#snapshot">Child Snapshot</a><a href="#day30">Day 30 Check-In</a><a href="#promise">Promise Audit</a><a href="#cost">Cost Calculator</a><a href="#dashboard">Dashboard</a><a href="#install">Install Plan</a><a href="#next">Your Next Step</a>
+</nav>
+
+<div class="quote">
+  <p>You spent money and energy getting their attention. You gave the tour. They trusted you with their <strong>child</strong>. The first 30 days shouldn't happen by accident.</p>
+  <p class="small">The goal of the first 30 days is to repeatedly confirm one thing for the family: <strong>"You made the right decision."</strong></p>
+</div>
+
+<!-- READY -->
+<section class="sec" id="ready">
+  <div class="sec-head">
+    <div class="part">Part 1</div>
+    <h2>Before You Install This: Are You Ready?</h2>
+    <p>A beautiful family experience on top of a shaky operation is just a nicer-looking promise you can't keep. Be real with yourself here. Check only what is true today, not what's true on a good day.</p>
+  </div>
+  <div class="ready-grid" id="readyGrid"></div>
+  <div class="readout" id="readyOut"></div>
+</section>
+
+<!-- STAGES -->
+<section class="sec" id="stages">
+  <div class="sec-head">
+    <div class="part">Part 2</div>
+    <h2>The Five Experience Stages</h2>
+    <p>Every stage answers a different emotional question the family is asking, whether they say it out loud or not. That is your real customer journey.</p>
+  </div>
+  <div class="tl">
+    <div class="tl-step"><span class="n">STAGE 1</span><span class="t">Confirm</span><span class="w">Enrollment to 7 days before start</span><span class="q">"Did I make the right choice?"</span></div>
+    <div class="tl-step"><span class="n">STAGE 2</span><span class="t">Welcome</span><span class="w">2-3 days before Day 1</span><span class="q">"Are they ready for my child?"</span></div>
+    <div class="tl-step"><span class="n">STAGE 3</span><span class="t">Reassure</span><span class="w">Day 1</span><span class="q">"Is my child okay without me?"</span></div>
+    <div class="tl-step"><span class="n">STAGE 4</span><span class="t">Connect</span><span class="w">Days 2-7</span><span class="q">"Do they really know my child?"</span></div>
+    <div class="tl-step"><span class="n">STAGE 5</span><span class="t">Deepen</span><span class="w">Days 8-30</span><span class="q">"Do we belong here?"</span></div>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Stage</th><th>The family is wondering</th><th>Your job</th><th>What they feel when you get it right</th></tr></thead>
+    <tbody>
+      <tr><td class="stage">Confirm</td><td>Did I make the right choice?</td><td>Reinforce the decision</td><td>Confident, informed, expected</td></tr>
+      <tr><td class="stage">Welcome</td><td>Are they ready for my child?</td><td>Demonstrate preparation</td><td>"They were expecting us."</td></tr>
+      <tr><td class="stage">Reassure</td><td>Is my child okay without me?</td><td>Build trust</td><td>"My child is safe and known."</td></tr>
+      <tr><td class="stage">Connect</td><td>Do they really know my child?</td><td>Build relationship</td><td>"They see my child. And me."</td></tr>
+      <tr><td class="stage">Deepen</td><td>Do we belong here?</td><td>Build partnership</td><td>"This is our community."</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- PLAYBOOK -->
+<section class="sec" id="playbook">
+  <div class="sec-head">
+    <div class="part">Part 3</div>
+    <h2>The Stage Playbook</h2>
+    <p>Check each standard your center already delivers <b>every time</b>, for <b>every family</b>. "Usually" doesn't count. Usually is how families slip through.</p>
+  </div>
+  <div id="stageCards" style="display:grid;gap:22px"></div>
+</section>
+
+<!-- MAP -->
+<section class="sec" id="map">
+  <div class="sec-head">
+    <div class="part">Part 4</div>
+    <h2>The Implementation Map</h2>
+    <p>This is where ideas become an operating system. Every touchpoint gets four things: an <b>owner</b>, a <b>standard</b>, a <b>trigger</b> and <b>accountability</b>. Fill in your names. Change the triggers to match your tools.</p>
+  </div>
+  <div class="exbar"><span class="tag">Live Exercise</span><span><b>90 seconds.</b> Mark the red circle on every touchpoint that happens today only because someone <em>remembers</em> to do it. Then mark the gold star on everything <em>you personally</em> have to make sure happens. Watch the tiles below.</span></div>
+  <div class="tbl-wrap map"><table>
+    <thead><tr><th>When</th><th>Touchpoint + standard</th><th>Owner</th><th>System / trigger</th><th>If it's missed, who notices?</th><th>By memory</th><th>Depends on me</th><th>Installed</th></tr></thead>
+    <tbody id="mapBody"></tbody>
+  </table></div>
+  <div class="gap">
+    <div class="gap-tile m"><span class="v" id="gMem">0</span><span class="k">touchpoints run on memory</span></div>
+    <div class="gap-tile s"><span class="v" id="gMe">0</span><span class="k">touchpoints depend on you</span></div>
+    <div class="gap-tile i"><span class="v" id="gIn">0</span><span class="k">touchpoints fully installed</span></div>
+  </div>
+  <p class="gap-msg" id="gapMsg">Circles and stars together are your gap.</p>
+  <div class="callout">
+    <h3>The Missed Touchpoint Recovery Rule</h3>
+    <p>Systems break. What separates a turnkey company is what happens next. When a touchpoint gets missed:</p>
+    <ol>
+      <li>The person in the "who notices" column catches it within 24 hours.</li>
+      <li>The owner completes it the same day, late beats never.</li>
+      <li>If a family felt the miss, leadership acknowledges it directly. No excuses, just ownership.</li>
+      <li>You fix the trigger, not just the person. Ask: why didn't the system remind them?</li>
+    </ol>
+  </div>
+  <div class="quote">
+    <p>A turnkey company isn't one where good things happen because you have good people. It's one where you've defined what good looks like, assigned who owns it, built the trigger and <strong>built accountability around whether it happened.</strong></p>
+  </div>
+</section>
+
+<!-- SCRIPTS -->
+<section class="sec" id="scripts">
+  <div class="sec-head">
+    <div class="part">Part 5</div>
+    <h2>The Family Experience Script Bank</h2>
+    <p>Don't leave the summit with "I need a Day 3 check-in." Leave with the actual message. Type your details once and every script fills in. Copy, paste into your family app, done.</p>
+  </div>
+  <div class="pers">
+    <label for="p_child">Child's name<input type="text" id="p_child" class="f" placeholder="Maya"></label>
+    <label for="p_parent">Parent / caregiver<input type="text" id="p_parent" class="f" placeholder="Ms. Williams"></label>
+    <label for="p_teacher">Lead teacher<input type="text" id="p_teacher" class="f" placeholder="Ms. Jasmine"></label>
+    <label for="p_teacher2">Co-teacher<input type="text" id="p_teacher2" class="f" placeholder="Ms. Erica"></label>
+    <label for="p_class">Classroom<input type="text" id="p_class" class="f" placeholder="Butterflies"></label>
+    <label for="p_start">Start day<input type="text" id="p_start" class="f" placeholder="Monday, October 19"></label>
+    <label for="p_detail">Something they love<input type="text" id="p_detail" class="f" placeholder="dinosaurs"></label>
+    <label for="p_director">Director<input type="text" id="p_director" class="f" placeholder="Ms. Deborah"></label>
+  </div>
+  <div class="scripts" id="scriptBank"></div>
+</section>
+
+<!-- SNAPSHOT -->
+<section class="sec" id="snapshot">
+  <div class="sec-head">
+    <div class="part">Part 6</div>
+    <h2>The New Child Snapshot</h2>
+    <p>Your teacher doesn't need the 22-page enrollment packet. They need one page that lets them greet this child like they already know them. Use this as your template. Fill it in here to see how it reads.</p>
+  </div>
+  <div class="snap">
+    <div class="snap-head"><h3>New Child Snapshot</h3><span class="example">In the teacher's hands 3+ days before Day 1</span></div>
+    <div class="snap-grid">
+      <label for="s_name">Child's name + what they're called at home<input type="text" id="s_name" class="f" placeholder="Maya, &quot;May-May&quot; at home"></label>
+      <label for="s_family">Family members / who does drop-off<input type="text" id="s_family" class="f" placeholder="Mom (Tanya), Grandma Rose picks up Fridays"></label>
+      <label for="s_lang">Languages spoken at home<input type="text" id="s_lang" class="f" placeholder="English, some Spanish with Grandma"></label>
+      <label for="s_comfort">Comfort items<input type="text" id="s_comfort" class="f" placeholder="Purple blanket, stuffed T-Rex"></label>
+      <label for="s_fav">Favorite activities<input type="text" id="s_fav" class="f" placeholder="Dinosaurs, puzzles, water play"></label>
+      <label for="s_allergy">Allergies / dietary needs<input type="text" id="s_allergy" class="f" placeholder="Tree nuts (EpiPen in office)"></label>
+      <label for="s_nap">Nap routine<input type="text" id="s_nap" class="f" placeholder="Back rub, sleeps about an hour"></label>
+      <label for="s_upset">What helps when upset<input type="text" id="s_upset" class="f" placeholder="Quiet corner, counting to 5 together"></label>
+      <label for="s_goals" class="full">Family's goals for this year<input type="text" id="s_goals" class="f" placeholder="More confident with other kids, ready for pre-K"></label>
+      <label for="s_know" class="full">Anything we should know before Day 1?<textarea id="s_know" class="f" placeholder="First time in group care. Mom is nervous about drop-off."></textarea></label>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 30 -->
+<section class="sec" id="day30">
+  <div class="sec-head">
+    <div class="part">Part 7</div>
+    <h2>The 30-Day Experience Check-In™</h2>
+    <p>"Everything okay?" is useless. Give your director a structured 5-minute conversation. Practice it here, then use the same six questions with every family on Day 30.</p>
+  </div>
+  <div class="qs" id="qs"></div>
+  <div class="callout">
+    <h3>Why question 3 matters most</h3>
+    <p>You are literally asking: <b>is there a gap between what you expected and what you experienced?</b> That is the Marketing-to-Experience Gap™, caught in real time, while it is still a gap and not an exit.</p>
+  </div>
+  <h3>Route the family</h3>
+  <p style="color:var(--muted);max-width:66ch">Most programs stop at the check-in. The money is in what you do next. A happy family on Day 30 is your best referral source. A family with a gap is a withdrawal notice you still have time to cancel.</p>
+  <div class="pick">
+    <label><input type="radio" name="route" id="route_adv" class="f" value="adv"> Expectations met or exceeded</label>
+    <label><input type="radio" name="route" id="route_rep" class="f" value="rep"> Gap identified</label>
+  </div>
+  <div class="route">
+    <div class="route-card adv">
+      <h3>The Advocate Path</h3>
+      <p>Within 48 hours, while the feeling is fresh:</p>
+      <ul style="margin:0;padding-left:20px;display:grid;gap:4px">
+        <li>Ask for a Google review, using their own words from question 2.</li>
+        <li>Make the referral ask specific: "Who else do you know with a little one?"</li>
+        <li>Invite them to be a parent voice at your next tour or open house.</li>
+      </ul>
+    </div>
+    <div class="route-card rep">
+      <h3>The Repair Path</h3>
+      <label for="rep_gap" style="font-size:13px;font-weight:600;color:var(--purple-deep)">The gap they named</label>
+      <input type="text" id="rep_gap" class="f" placeholder="Expected daily photos, getting them twice a week">
+      <div class="two" style="gap:10px">
+        <label for="rep_owner" style="font-size:13px;font-weight:600;color:var(--purple-deep)">Owner<input type="text" id="rep_owner" class="f" placeholder="Lead teacher"></label>
+        <label for="rep_due" style="font-size:13px;font-weight:600;color:var(--purple-deep)">Fixed by<input type="date" id="rep_due" class="f"></label>
+      </div>
+      <label for="rep_action" style="font-size:13px;font-weight:600;color:var(--purple-deep)">Action + follow-up date with the family<input type="text" id="rep_action" class="f" placeholder="Daily photo by 11am, director follows up in 1 week"></label>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE AUDIT -->
+<section class="sec" id="promise">
+  <div class="sec-head">
+    <div class="part">Part 8</div>
+    <h2>The Promise-to-Proof Audit</h2>
+    <p>Marketing makes the promise. Experience keeps it. Pull up your website, your Facebook ads and your tour script. Write down what you promise. Then name exactly where a new family sees proof of it in the first 30 days.</p>
+  </div>
+  <div class="tbl-wrap pa"><table>
+    <thead><tr><th>What my marketing promises</th><th>Where a family sees proof in 30 days</th><th>Proof strength</th></tr></thead>
+    <tbody id="paBody"></tbody>
+  </table></div>
+  <div class="strength-sum" id="paSum"></div>
+</section>
+
+<!-- COST -->
+<section class="sec" id="cost">
+  <div class="sec-head">
+    <div class="part">Part 9</div>
+    <h2>The Cost of a Lost Family</h2>
+    <p>A family that leaves in the first 90 days doesn't just take their tuition. They take the marketing dollars you spent to get them, the tour time, the admin hours, and the referrals they would have sent you. Run your real numbers.</p>
+  </div>
+  <div class="calc">
+    <div class="calc-in">
+      <span class="example">Example numbers loaded. Replace with yours.</span>
+      <label for="c_tuition">Average weekly tuition (private pay + subsidy)<input type="number" id="c_tuition" class="f" min="0" value="285"></label>
+      <label for="c_acq">Cost to land one enrollment <small>(ads, tour time, admin hours, promos)</small><input type="number" id="c_acq" class="f" min="0" value="450"></label>
+      <label for="c_months">Months a family normally stays with you<input type="number" id="c_months" class="f" min="0" value="24"></label>
+      <label for="c_lost">Families who left in their first 90 days last year<input type="number" id="c_lost" class="f" min="0" value="4"></label>
+      <label for="c_ref">Referrals a happy family sends over their stay<input type="number" id="c_ref" class="f" min="0" step="0.5" value="1"></label>
+    </div>
+    <div class="calc-out">
+      <span style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#d9d7f3;font-weight:700">Revenue walking out your door each year</span>
+      <span class="big" id="cBig">$0</span>
+      <div class="row"><span>Lifetime tuition value of one family</span><b id="cLtv">$0</b></div>
+      <div class="row"><span>Acquisition dollars lost</span><b id="cAcqLost">$0</b></div>
+      <div class="row"><span>Referral revenue that never arrives</span><b id="cRefLost">$0</b></div>
+      <div class="row"><span>If this map saves just half of them</span><b id="cSave" style="color:#f1c89e">$0</b></div>
+      <p class="note">This number doesn't include the Google review they'll write on the way out. Reputation is revenue too.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="sec" id="dashboard">
+  <div class="sec-head">
+    <div class="part">Part 10</div>
+    <h2>The 30-Day Family Experience Dashboard</h2>
+    <p>You don't want staff just checking boxes. You want to know if the system works. Review this monthly in your leadership meeting. Green is 90% or better.</p>
+  </div>
+  <label for="d_month" style="display:grid;gap:4px;max-width:260px;font-size:13px;font-weight:600;color:var(--purple-deep)">Month<input type="text" id="d_month" class="f" placeholder="October 2026"></label>
+  <div class="dash" id="dash"></div>
+</section>
+
+<!-- INSTALL -->
+<section class="sec" id="install">
+  <div class="sec-head">
+    <div class="part">Part 11</div>
+    <h2>Build Your System</h2>
+    <p>Don't try to install all fourteen touchpoints Monday. That is how good ideas die in a binder. Pick three. Assign them. Put a date on them. Then add more every 30 days.</p>
+  </div>
+  <div class="plan">
+    <div class="plan-row plan-head"><span>Touchpoint I'm installing</span><span>Owner</span><span>Live by</span></div>
+    <div class="plan-row"><input type="text" id="pl1" class="f track" placeholder="Teacher introduction message"><input type="text" id="pl1o" class="f" placeholder="Lead teachers"><input type="date" id="pl1d" class="f"></div>
+    <div class="plan-row"><input type="text" id="pl2" class="f track" placeholder="1-1-1 pickup update on Day 1"><input type="text" id="pl2o" class="f" placeholder="All classroom teams"><input type="date" id="pl2d" class="f"></div>
+    <div class="plan-row"><input type="text" id="pl3" class="f track" placeholder="30-Day Experience Check-In"><input type="text" id="pl3o" class="f" placeholder="Director"><input type="date" id="pl3d" class="f"></div>
+  </div>
+  <label for="pl_monday" style="display:grid;gap:6px;font-weight:600;color:var(--purple-deep)">The one thing I'm doing Monday morning:<textarea id="pl_monday" class="f track" placeholder="Walk into the staff huddle and hand every lead teacher the Day 1 scripts."></textarea></label>
+  <label for="pl_train" style="display:grid;gap:6px;font-weight:600;color:var(--purple-deep)">Who trains the team on this so it doesn't have to be me?<input type="text" id="pl_train" class="f track" placeholder="Education Coordinator, at the next staff meeting"></label>
+</section>
+
+<section class="close">
+  <p>Marketing got them here.</p>
+  <p>Experience makes them stay.</p>
+  <p>Systems make it repeatable.</p>
+</section>
+
+<section class="pathway" id="next">
+  <div class="pw-head">
+    <div class="eyebrow">Your next step</div>
+    <h2>This map is one system. Your company runs on dozens.</h2>
+    <p>The First 30 Days Family Experience Map™ lives inside the <b>I</b> of the Childcare B.U.I.L.D. System™: <b>Install the Systems</b>. If you just marked a lot of red circles and gold stars, that's not a family experience problem. That's a company that still runs through you. Here's how we fix that, together.</p>
+  </div>
+
+  <div class="build-word" aria-label="The B.U.I.L.D. Framework">
+    <div><span class="bl">B</span><span class="bt">Build the Foundation</span></div>
+    <div><span class="bl">U</span><span class="bt">Understand the Numbers</span></div>
+    <div class="on"><span class="bl">I</span><span class="bt">Install the Systems</span></div>
+    <div><span class="bl">L</span><span class="bt">Lead the Team</span></div>
+    <div><span class="bl">D</span><span class="bt">Design the Legacy</span></div>
+  </div>
+
+  <div class="umbrella">
+    <div class="eyebrow">The Childcare CEO Pathway™</div>
+    <p class="u-words">Build <i>|</i> Lead <i>|</i> Impact <i>|</i> Create Wealth <i>|</i> Leave a Legacy</p>
+    <p class="u-sub">Real Support. Real Strategy. A Bigger Tomorrow.</p>
+  </div>
+
+  <div class="tiers-wrap"><div class="tiers">
+    <article class="tier">
+      <span class="t-role">Tier 0 · Diagnose</span><h3>Discover</h3>
+      <p class="t-for">For the owner asking, "What should I actually work on first?"</p>
+      <p class="t-res">Clarity on what's holding your business back.</p>
+      <ul><li>3-Day BUILD Challenge</li><li>Childcare Owner Assessment</li><li>Tools, calculators + masterclasses</li></ul>
+    </article>
+    <article class="tier">
+      <span class="t-role">Tier 1 · Solve</span><h3>Implement</h3>
+      <p class="t-for">For the owner who knows the problem and needs it fixed.</p>
+      <p class="t-res">One pressing problem solved. Next step clear.</p>
+      <ul><li>Focused workshops + intensives</li><li>Templates + implementation plan</li><li>Live instruction</li></ul>
+    </article>
+    <article class="tier feature">
+      <span class="t-flag">Signature program</span>
+      <span class="t-role">Tier 2 · Build</span><h3>The Childcare B.U.I.L.D. System™</h3>
+      <p class="t-for">For the established owner asking, "Why does everything still come back to me?"</p>
+      <p class="t-res">A stronger company that doesn't need you holding it together.</p>
+      <ul><li>90-day hybrid business accelerator</li><li>BUILD Business Diagnostic™ + Owner Dependency Assessment™</li><li>6 Implementation Labs + 3 Expert Labs</li><li>12-Month BUILD Roadmap™</li></ul>
+    </article>
+    <article class="tier">
+      <span class="t-role">Tier 3 · Lead</span><h3>Inner Circle™</h3>
+      <p class="t-for">For the CEO making real company-level decisions.</p>
+      <p class="t-res">Better decisions, stronger leaders and a trusted CEO room.</p>
+      <ul><li>Private CEO advisory</li><li>Monthly mastermind</li><li>Quarterly 6-hour strategic planning</li><li>Between-session Voxer access</li></ul>
+    </article>
+    <article class="tier">
+      <span class="t-role">Tier 3+ · Develop</span><h3>Inner Circle BUILD Lab™</h3>
+      <p class="t-for">For the CEO who needs the whole organization to grow with them.</p>
+      <p class="t-res">Growth that doesn't depend on your growth alone.</p>
+      <ul><li>Everything in Annual Inner Circle</li><li>BUILD Learning Lab™ for you + 2 leaders</li><li>BUILD Lab Days at AJR centers</li><li>On-site BUILD Business Review</li></ul>
+    </article>
+  </div></div>
+
+  <div class="experience">
+    <div>
+      <div class="x-kicker">The Experience™ · Quarterly in-person business experience</div>
+      <p class="x-title">See it. Experience it. Build differently.</p>
+      <p class="x-steps">Learn it <i>•</i> See it <i>•</i> Work on it <i>•</i> Connect <i>•</i> Leave knowing what to build next</p>
+      <p class="x-note">Walk through a real, operating childcare organization with Behind the BUILD™. Open to childcare owners and built into client fulfillment.</p>
+    </div>
+  </div>
+
+  <div class="capacity" aria-label="What Consulting with AJR produces">
+    <span>Financial Strength</span><span>Stronger Systems</span><span>Leadership Capacity</span><span>CEO Freedom</span><span>Organizational Legacy</span>
+  </div>
+
+  <div class="contact">
+    <div>
+      <h3>Not sure which step is yours?</h3>
+      <p>Book a free 15-minute Best-Fit Call. Bring what your gap tiles showed you. We'll look at the support you need right now and match you to the program that fits, whether that's a free tool, one focused intensive, BUILD, or a CEO advisory room.</p>
+    </div>
+    <div class="contact-box">
+      <a class="btn gold book" href="https://letsmeet.io/aliyajohnsonroberts/15min-best-fit-call" target="_blank" rel="noopener">Book my 15-min Best-Fit Call</a>
+      <span class="site-sm book-url">letsmeet.io/aliyajohnsonroberts/15min-best-fit-call</span>
+      <span class="site-sm" style="margin-top:6px">Prefer email?</span>
+      <a class="email" id="emailTxt" href="mailto:info@aliyajohnsonroberts.com?subject=FIRST%2030%20DAYS">info@aliyajohnsonroberts.com</a>
+      <button class="btn ghost sm" type="button" id="copyEmail">Copy email</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="site">consultingwithajr.com</span>
+  <span>© 2026 Consulting with AJR · Aliya Johnson-Roberts · The First 30 Days Family Experience Map™ and Closing the Marketing-to-Experience Gap™</span>
+  <span>info@aliyajohnsonroberts.com · Built on the same systems running Pratt Street and Bustleton Learning Centers in Philadelphia.</span>
+</footer>
+</main>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script>
+(function(){
+var KEY = "ajr-first30-map-v1";
+var S = {};
+try { S = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) { S = {}; }
+function persist(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} var n=document.getElementById("savedNote"); n.textContent="Saved"; clearTimeout(persist.t); persist.t=setTimeout(function(){n.textContent="Auto-saves as you type";},1400); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function toast(msg){ var t=document.getElementById("toast"); t.textContent=msg; t.hidden=false; clearTimeout(toast.t); toast.t=setTimeout(function(){t.hidden=true;},3200); }
+
+/* ---------- DATA ---------- */
+var READY = [
+  ["Strong systems","Enrollment, billing and onboarding steps are written down, not living in one person's head."],
+  ["Staff consistency","Your classroom teams are stable enough that the teacher who sends the intro is still there on Day 30."],
+  ["Staff who follow a protocol with fidelity","When you hand your team a standard, they deliver it the same way on a Tuesday in February as they do on tour day."],
+  ["Active leadership on the floor","A director or assistant director is present at arrival and pickup, seeing what families see."],
+  ["Strong financials","You know your cost to land one enrollment and your monthly budget can absorb a slow month."],
+  ["Current compliance posture","You're inspection-ready today. No open violations, no expired clearances, files complete."]
+];
+
+var STAGES = [
+  {n:"1", t:"Confirm", when:"Enrollment to 7 days before start", wonder:"\"Did I make the right choice?\"", goal:"Make the family feel confident, informed and expected.",
+   mistake:"Taking the deposit and disappearing until Day 1. They just made one of the biggest decisions a parent makes. Silence feels like regret.",
+   no:"Thank you for enrolling. Attached are your forms.", yes:"Welcome to the family! We're so excited for Maya to join the Butterflies on October 19. Ms. Jasmine and Ms. Erica can't wait to meet her...",
+   checks:["Personalized welcome sent within 24 hours of enrollment","Welcome names the child, classroom, teachers and start date","Family gets drop-off info, what to bring, app setup and key contacts","Subsidy / funding paperwork status confirmed so start date doesn't slip","New Family Workflow fires: billing, app, roster, food program, pickup list, emergency contacts","New Child Snapshot completed and sent to the teacher"]},
+  {n:"2", t:"Welcome", when:"2-3 days before Day 1", wonder:"\"Are they ready for my child?\"", goal:"\"They are expecting us.\"",
+   mistake:"Letting the first time the teacher learns the child's name be when the parent walks in the door.",
+   no:"(Nothing. The family hears from nobody until Day 1.)", yes:"Hi! I'm Ms. Jasmine, Maya's teacher. I saw she LOVES dinosaurs, so I already know we'll have plenty to talk about...",
+   checks:["Teacher sends a personal introduction message","Cubby labeled and child's name displayed","Teacher knows the child's AND caregiver's names","Allergy and dietary needs posted and communicated to kitchen","Comfort and transition info reviewed by the whole classroom team","Materials and welcome item ready"],
+   line:"A $0 name tag on a cubby can say more about your brand than a $500 Facebook ad. The ad said \"your child matters here.\" The cubby proves it."},
+  {n:"3", t:"Reassure", when:"Day 1", wonder:"\"Is my child okay without me?\"", goal:"\"My child is safe. They know who my child is. I can trust these people.\"",
+   mistake:"Asking \"What's the child's name?\" at the door. The teacher should already know.",
+   no:"She had a good day.", yes:"Maya had a great first day! She spent a long time building with Jordan in blocks, ate most of her lunch and slept about an hour. Tomorrow we're introducing the sensory table. I think she'll love it.",
+   checks:["Child and caregiver greeted by name at arrival","Child settled and adjustment noted within 30-60 minutes","Proactive update sent before the parent has to ask","Honest update: if the child was sad, say so, and say what helped","1-1-1 pickup update: one success, one observation, one personal detail","Day 1 backup plan ready if the lead teacher calls out"],
+   extra:true},
+  {n:"4", t:"Connect", when:"Days 2-7", wonder:"\"Do they really know my child?\"", goal:"\"They are getting to know my child... and me.\"",
+   mistake:"Day 1 gets balloons. Day 4 gets \"you know where your cubby is.\" This is where most programs stop trying.",
+   no:"Ate: yes. Slept: yes. Diaper: yes.", yes:"We discovered today that Amir LOVES music. The second we played Wheels on the Bus, he was up dancing.",
+   checks:["Every family gets at least one human, specific observation during Week 1","Day 3 pulse check asks how the PARENT is feeling","Director check-in by Day 5-7 using the 3 questions","Concerns from Week 1 logged with an owner, not just \"noted\""]},
+  {n:"5", t:"Deepen", when:"Days 8-30", wonder:"\"Do we belong here?\"", goal:"Move from \"our program + your child\" to \"our community + your family.\"",
+   mistake:"Treating communication like engagement. Reporting to families isn't partnering with them.",
+   no:"Here is this week's newsletter.", yes:"Now that we've had two weeks with Amir, we're seeing how much he loves building and movement. Are you seeing that at home too?",
+   checks:["Week 2: teacher shares observed interests AND asks what the family sees at home","Week 3: one reciprocal invitation (family photo, favorite song, a tradition, a book)","Day 30: structured Experience Check-In completed by the director","Day 30 outcome routed: Advocate path or Repair path"]}
+];
+
+var MAP = [
+  ["Enrollment","Personalized welcome message","Names child, class, teachers, start date. Within 24 hrs.","Enrollment / Admin","Enrollment workflow fires at deposit","Director"],
+  ["Enrollment","New Family Workflow","Family live in billing, app, roster, food program, pickup + emergency records before Day 1.","Admin","Enrollment tracker checklist","Director"],
+  ["Pre-start","New Child Snapshot to teacher","One page in the teacher's hands 3+ days before start.","Admin","Sent with roster update","Education Coordinator"],
+  ["2-3 days pre-start","Teacher introduction","Personal message that mentions one detail about the child.","Lead Teacher","Family app task auto-assigned","Director"],
+  ["Day before","Classroom readiness check","Cubby, name, allergies, materials and welcome item ready.","Lead Teacher","Readiness checklist","Assistant Director"],
+  ["Day 1 arrival","Personal greeting","Child and caregiver greeted by name.","Classroom team","Arrival protocol + morning huddle","Director on the floor"],
+  ["Day 1 (first 2 hrs)","Proactive reassurance update","Honest photo or note before the parent asks.","Lead Teacher","App reminder at set time","Director"],
+  ["Day 1 pickup","1-1-1 pickup update","One success, one observation, one personal detail.","Lead Teacher","Pickup protocol","Director"],
+  ["Day 3","Family pulse check","Ask how the PARENT is feeling about the transition.","Teacher / Admin","Task reminder","Education Coordinator"],
+  ["Day 5-7","Director check-in","3-question conversation, notes logged.","Director","Calendar hold booked at enrollment","CEO / Operations"],
+  ["Week 2","Child connection","Share observed interests, ask what they see at home.","Lead Teacher","Weekly lesson plan","Education Coordinator"],
+  ["Week 3","Family connection","One reciprocal invitation to participate.","Lead Teacher","Classroom family plan","Director"],
+  ["Day 30","30-Day Experience Check-In™","Structured 6-question conversation.","Director","CRM / calendar booked at enrollment","CEO / Operations"],
+  ["Day 30+","Route: Advocate or Repair","Review + referral ask in 48 hrs, or gap gets owner + deadline.","Director","Check-in outcome","CEO"]
+];
+
+var SCRIPTS = [
+  ["Enrollment","Welcome message","Welcome to the {center} family! We're so excited to officially welcome {child} to the {class} classroom on {start}. {teacher} and {teacher2} are looking forward to meeting your family.\n\nOver the next few days we'll help you prepare so you and {child} know exactly what to expect. Here's everything you need for the first day..."],
+  ["2-3 days before","Teacher introduction","Hi {parent}! I'm {teacher}, and I'll be {child}'s teacher in {class}. I heard {child} loves {detail}, so I already know we're going to have plenty to talk about.\n\nIf there's anything you'd like me to know before {start}, send it my way anytime. We can't wait to meet you both."],
+  ["Day 1, first 2 hours","Reassurance update","Quick update for you... {child} has settled in and is playing with {detail} right now. {child} was a little sad after you left, and {teacher2} sat with {child} until {child} was ready to explore. We'll keep you posted throughout the day."],
+  ["Day 1 pickup","1-1-1 pickup update","{child} had a great first day! One win: [success]. Something we noticed: [observation]. And a little detail we loved: [personal detail].\n\nTomorrow we're planning something with {detail} because we think {child} is going to love it."],
+  ["Day 3","Family pulse check","You've officially made it through the first few days! How are YOU feeling about the transition? Is there anything we could do to make things easier for you or {child}?"],
+  ["Day 5-7","Director check-in","Hi {parent}, this is {director} at {center}. You've officially finished your first week with us! I'd love 5 minutes to hear how it's felt for your family, anything you're unsure about, and anything we can do to make next week even better."],
+  ["Week 2","Child connection","Now that we've had two weeks with {child}, we're really getting to know them. We've noticed a big love for {detail} and [interest]. Are you seeing the same things at home? We'd love to build on it in {class}."],
+  ["Week 3","Family connection invite","We want {class} to feel like family. Would you share a family photo, a favorite song, or a tradition that's special to you? We'll add it to our classroom so {child} sees home here too."],
+  ["Day 30","Check-in invitation","It's officially been 30 days since {child} joined us! I'd love to schedule a quick 5-minute conversation about your family's experience... what's working, and anything we can do to make it even stronger. What time works best this week?"],
+  ["Day 30, Advocate path","Review + referral ask","{parent}, what you shared about {child}'s first month made our whole team's week. Would you be willing to share that in a Google review? Families like yours are how other parents find us.\n\nAnd if you know anyone with a little one, we'd be honored to meet them."],
+  ["Day 30, Repair path","Repair follow-up","Thank you for being honest with us about [the gap]. You deserved better on that. Here's what we're changing: [action]. {teacher} owns it, and I'll personally check back with you by [date] to make sure it's working for your family."]
+];
+
+var QS = [
+  ["How has your child's transition been from your perspective?",""],
+  ["What has made you feel most confident about choosing our program?","Save their exact words. This becomes your review ask."],
+  ["Is there anything that has been different from what you expected?","This is the Marketing-to-Experience Gap question."],
+  ["How do you feel about the communication you're receiving?",""],
+  ["Is there anything you'd like us to know about your child that we haven't learned yet?",""],
+  ["What could we do to make your family's experience even better?",""]
+];
+
+var PA = [
+  ["We treat your child like family","Teacher knows the child's name and one detail before Day 1"],
+  ["Constant communication with parents","",""],
+  ["Safe, nurturing environment","",""],
+  ["Kindergarten-ready curriculum","",""],
+  ["","",""]
+];
+
+var DASH = [
+  ["d_enroll","New enrollments this month",null],
+  ["d_welcome","Welcomes sent within 24 hours","d_enroll"],
+  ["d_intro","Teacher introductions completed","d_enroll"],
+  ["d_wk1","Week 1 director check-ins completed","d_enroll"],
+  ["d_d30","30-day check-ins completed","d_enroll"],
+  ["d_met","Families saying expectations were met or exceeded","d_d30"],
+  ["d_conc","Concerns identified",null],
+  ["d_res","Concerns resolved","d_conc"],
+  ["d_lost","Families lost within first 30 days","d_enroll","inverse"],
+  ["d_rev","Reviews or referrals from new families",null]
+];
+
+/* ---------- RENDER ---------- */
+document.getElementById("readyGrid").innerHTML = READY.map(function(r,i){
+  return '<label class="chk"><input type="checkbox" id="rd'+i+'" class="f track"><span><b>'+esc(r[0])+'.</b> '+esc(r[1])+'</span></label>';
+}).join("");
+
+document.getElementById("stageCards").innerHTML = STAGES.map(function(s,si){
+  var checks = s.checks.map(function(c,ci){ return '<label class="chk"><input type="checkbox" id="st'+si+'_'+ci+'" class="f track"><span>'+esc(c)+'</span></label>'; }).join("");
+  var extra = "";
+  if (s.line) extra += '<div class="quote"><p>'+esc(s.line)+'</p></div>';
+  if (s.extra) extra += '<div class="two"><div class="callout"><h3>The Nervous Parent Protocol</h3><ol><li>Acknowledge the emotion out loud.</li><li>Explain exactly what happens next.</li><li>Tell them when they will hear from you.</li><li>Send that update on time, or early.</li><li>Tell them the truth about how the child adjusted.</li><li>Invite their questions.</li><li>Never shame or dismiss the concern.</li></ol></div><div class="callout"><h3>The Day 1 Backup Plan</h3><p>Three teachers called out. It happens. Day 1 can\'t depend on one person showing up.</p><ul><li>The co-teacher has read the Snapshot, too.</li><li>Anyone floating into that room gets the child\'s name, comfort item and allergy info before doors open.</li><li>The director greets the family personally and names who will be with their child today.</li><li>The reassurance update still goes out on time.</li></ul></div></div>';
+  return '<article class="stage"><div class="stage-top"><span class="stage-num">0'+s.n+'</span><div><div class="when">'+esc(s.when)+'</div><h3>'+esc(s.t)+'</h3><div class="wonder">The family is wondering: '+esc(s.wonder)+'</div></div></div>'+
+    '<div class="stage-body"><div class="two"><div style="display:grid;gap:12px;align-content:start"><h4>Experience goal</h4><p class="goal">'+esc(s.goal)+'</p><div class="sample"><span class="lbl">The common mistake</span>'+esc(s.mistake)+'</div><div class="vs"><div class="no"><b>Not this</b>'+esc(s.no)+'</div><div class="yes"><b>This</b>'+esc(s.yes)+'</div></div></div>'+
+    '<div style="display:grid;gap:6px;align-content:start"><h4>Standards we deliver every time</h4><div class="listbox">'+checks+'</div></div></div>'+extra+'</div></article>';
+}).join("");
+
+document.getElementById("mapBody").innerHTML = MAP.map(function(m,i){
+  return '<tr><td class="when">'+esc(m[0])+'</td><td class="tp"><b>'+esc(m[1])+'</b><small>'+esc(m[2])+'</small></td>'+
+    '<td><input type="text" id="mo'+i+'" class="f" placeholder="'+esc(m[3])+'" aria-label="Owner for '+esc(m[1])+'"></td>'+
+    '<td><input type="text" id="mt'+i+'" class="f" placeholder="'+esc(m[4])+'" aria-label="Trigger for '+esc(m[1])+'"></td>'+
+    '<td><input type="text" id="mw'+i+'" class="f" placeholder="'+esc(m[5])+'" aria-label="Who notices if '+esc(m[1])+' is missed"></td>'+
+    '<td class="c"><input type="checkbox" class="f tog mem" id="mm'+i+'" aria-label="Runs on memory"></td>'+
+    '<td class="c"><input type="checkbox" class="f tog me" id="ms'+i+'" aria-label="Depends on me"></td>'+
+    '<td class="c"><input type="checkbox" class="f box track" id="mi'+i+'" aria-label="Installed"></td></tr>';
+}).join("");
+
+document.getElementById("scriptBank").innerHTML = SCRIPTS.map(function(s,i){
+  return '<div class="script"><div class="script-top"><div><div class="s-when">'+esc(s[0])+'</div><h4>'+esc(s[1])+'</h4></div><button class="btn ghost sm" type="button" data-copy="'+i+'">Copy</button></div><p class="script-text" id="sc'+i+'"></p></div>';
+}).join("");
+
+document.getElementById("qs").innerHTML = QS.map(function(q,i){
+  return '<div class="q"><span class="qn">'+(i+1)+'</span><label class="qt" for="q'+i+'">'+esc(q[0])+(q[1]?'<em>'+esc(q[1])+'</em>':'')+'</label><textarea id="q'+i+'" class="f track" placeholder="Their answer, in their words"></textarea></div>';
+}).join("");
+
+document.getElementById("paBody").innerHTML = PA.map(function(p,i){
+  return '<tr><td><input type="text" id="pa'+i+'" class="f track" placeholder="'+esc(p[0]||"Another promise you make")+'"></td>'+
+    '<td><input type="text" id="pb'+i+'" class="f" placeholder="'+esc(p[1]||"Where exactly do they see it?")+'"></td>'+
+    '<td><select id="pc'+i+'" class="f" aria-label="Proof strength"><option value="">Rate it</option><option value="g">Proven every time</option><option value="y">Sometimes</option><option value="r">Not yet</option></select></td></tr>';
+}).join("");
+
+document.getElementById("dash").innerHTML = DASH.map(function(d){
+  return '<div class="metric"><label for="'+d[0]+'">'+esc(d[1])+'</label><input type="number" min="0" id="'+d[0]+'" class="f" placeholder="0"><div class="res" id="'+d[0]+'_r"></div></div>';
+}).join("");
+
+/* ---------- BIND ---------- */
+var fields = document.querySelectorAll(".f");
+fields.forEach(function(el){
+  if (el.type==="radio") { if (S[el.id]) el.checked = true; }
+  else if (el.type==="checkbox") { if (S[el.id]) el.checked = true; }
+  else if (S[el.id]!=null) el.value = S[el.id];
+  var ev = (el.type==="checkbox"||el.type==="radio"||el.tagName==="SELECT") ? "change" : "input";
+  el.addEventListener(ev, function(){
+    if (el.type==="radio") { document.querySelectorAll('input[name="'+el.name+'"]').forEach(function(r){ S[r.id]=r.checked; }); }
+    else if (el.type==="checkbox") S[el.id]=el.checked;
+    else S[el.id]=el.value;
+    persist(); update();
+  });
+});
+
+function val(id){ var e=document.getElementById(id); return e ? e.value.trim() : ""; }
+function num(id){ var v=parseFloat(val(id)); return isNaN(v)?0:v; }
+function money(n){ return "$"+Math.round(n).toLocaleString("en-US"); }
+
+var VARS = {center:["centerName","our center"],child:["p_child","Maya"],parent:["p_parent","Ms. Williams"],teacher:["p_teacher","Ms. Jasmine"],teacher2:["p_teacher2","Ms. Erica"],"class":["p_class","Butterflies"],start:["p_start","Monday"],detail:["p_detail","dinosaurs"],director:["p_director","Ms. Deborah"]};
+function fillScript(t, html){
+  return t.replace(/\{(\w+)\}/g, function(_,k){
+    var v = VARS[k]; if(!v) return _;
+    var typed = val(v[0]); var out = typed || v[1];
+    return html ? '<span class="v'+(typed?'':' empty')+'">'+esc(out)+'</span>' : out;
+  });
+}
+
+function update(){
+  // progress
+  var tr = document.querySelectorAll(".track"), done=0;
+  tr.forEach(function(e){ if (e.type==="checkbox" ? e.checked : e.value.trim()) done++; });
+  var pc = tr.length ? Math.round(done/tr.length*100) : 0;
+  document.getElementById("progFill").style.width = pc+"%";
+  document.getElementById("progNum").textContent = pc+"%";
+
+  // readiness
+  var r=0; READY.forEach(function(_,i){ if(document.getElementById("rd"+i).checked) r++; });
+  var ro=document.getElementById("readyOut"), lvl, msg, cls;
+  if (r>=5){ cls="r-green"; lvl=r+" of 6: Install now."; msg="Your foundation can hold it. Work the full map and aim to have every touchpoint live within 90 days."; }
+  else if (r>=3){ cls="r-gold"; lvl=r+" of 6: Install in phases."; msg="Start with three touchpoints you can deliver every time: the teacher introduction, the Day 1 reassurance update, and the 30-Day Check-In. Strengthen the unchecked areas while you build."; }
+  else { cls="r-red"; lvl=r+" of 6: Foundation first."; msg="Don't add more promises yet. Start with the Director check-in and the 30-Day Check-In so you can hear the gaps, and fix the operational pieces above. Families feel instability before you name it."; }
+  ro.className="readout "+cls; ro.innerHTML='<span class="lvl">'+esc(lvl)+'</span><p>'+esc(msg)+'</p>';
+
+  // gap
+  var gm=0, gs=0, gi=0;
+  MAP.forEach(function(_,i){ if(document.getElementById("mm"+i).checked) gm++; if(document.getElementById("ms"+i).checked) gs++; if(document.getElementById("mi"+i).checked) gi++; });
+  document.getElementById("gMem").textContent=gm; document.getElementById("gMe").textContent=gs; document.getElementById("gIn").textContent=gi;
+  var g = document.getElementById("gapMsg");
+  if (!gm && !gs) g.textContent = "Circles and stars together are your gap. Mark them honestly.";
+  else g.textContent = "That's your gap: "+gm+" touchpoint"+(gm===1?"":"s")+" held together by memory and "+gs+" held together by you. None of those survive your vacation.";
+
+  // scripts
+  SCRIPTS.forEach(function(s,i){ document.getElementById("sc"+i).innerHTML = fillScript(esc(s[2]).replace(/&quot;/g,'"'), true); });
+
+  // promise
+  var cg=0,cy=0,cr=0; PA.forEach(function(_,i){ var v=val("pc"+i); if(v==="g")cg++; else if(v==="y")cy++; else if(v==="r")cr++; });
+  document.getElementById("paSum").innerHTML = (cg+cy+cr) ? '<span class="pill g">'+cg+' proven</span><span class="pill y">'+cy+' sometimes</span><span class="pill r">'+cr+' not yet</span>'+(cy+cr?'<span style="font-size:14px;color:var(--muted);align-self:center">Every "sometimes" and "not yet" is a promise your marketing is making that your experience isn\'t keeping.</span>':'') : '<span style="font-size:14px;color:var(--muted)">Rate each promise to see your proof score.</span>';
+
+  // cost
+  var tuit=num("c_tuition"), acq=num("c_acq"), mo=num("c_months"), lost=num("c_lost"), ref=num("c_ref");
+  var ltv = tuit*4.33*mo;
+  var avgRemaining = Math.max(ltv - tuit*4.33*2, 0); // lost after ~2 months
+  var refLost = lost*ref*ltv*0.25; // conservative: a referral counted at 25% of a lifetime family
+  var total = lost*avgRemaining + lost*acq + refLost;
+  document.getElementById("cLtv").textContent=money(ltv);
+  document.getElementById("cAcqLost").textContent=money(lost*acq);
+  document.getElementById("cRefLost").textContent=money(refLost);
+  document.getElementById("cBig").textContent=money(total);
+  document.getElementById("cSave").textContent=money(total/2);
+
+  // dashboard
+  DASH.forEach(function(d){
+    var out=document.getElementById(d[0]+"_r"), v=num(d[0]);
+    if(!d[2]){ out.innerHTML = d[0]==="d_enroll" ? '<span>Base for the % below</span>' : '<span>Count</span>'; return; }
+    var base=num(d[2]);
+    if(!base || val(d[0])===""){ out.innerHTML='<span>Enter a number</span>'; return; }
+    var p=Math.round(v/base*100), cls;
+    if(d[3]==="inverse"){ cls = p===0?"g":(p<=5?"y":"r"); }
+    else cls = p>=90?"g":(p>=70?"y":"r");
+    out.innerHTML='<span>'+(d[3]==="inverse"?"of new families":"completion")+'</span><b class="pill '+cls+'">'+p+'%</b>';
+  });
+}
+
+document.getElementById("scriptBank").addEventListener("click", function(e){
+  var b=e.target.closest("[data-copy]"); if(!b) return;
+  var text = fillScript(SCRIPTS[+b.getAttribute("data-copy")][2], false);
+  function fallback(){ var p=document.getElementById("sc"+b.getAttribute("data-copy")); var rg=document.createRange(); rg.selectNodeContents(p); var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(rg); toast("Selected. Press Ctrl/Cmd + C to copy."); }
+  try { navigator.clipboard.writeText(text).then(function(){ b.textContent="Copied"; setTimeout(function(){b.textContent="Copy";},1500); }, fallback); } catch(err){ fallback(); }
+});
+
+document.getElementById("copyEmail").addEventListener("click", function(){
+  var b=this, t="info@aliyajohnsonroberts.com";
+  function fb(){ var r=document.createRange(); r.selectNodeContents(document.getElementById("emailTxt")); var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r); toast("Selected. Press Ctrl/Cmd + C to copy."); }
+  try{ navigator.clipboard.writeText(t).then(function(){ b.textContent="Copied"; setTimeout(function(){b.textContent="Copy email";},1500); }, fb); }catch(e){ fb(); }
+});
+
+/* reset with in-page confirm */
+var rw=document.getElementById("resetWrap");
+function bindReset(){ document.getElementById("resetBtn").addEventListener("click", function(){
+  rw.innerHTML='<span class="confirm">Clear everything? <button class="btn sm" id="rYes" type="button">Yes, clear</button><button class="btn ghost sm" id="rNo" type="button">Cancel</button></span>';
+  document.getElementById("rYes").onclick=function(){ S={}; try{localStorage.removeItem(KEY);}catch(e){} fields.forEach(function(el){ if(el.type==="checkbox"||el.type==="radio") el.checked=false; else if(el.defaultValue && el.type==="number") el.value=el.defaultValue; else el.value=""; }); restoreReset(); update(); toast("Workbook cleared."); };
+  document.getElementById("rNo").onclick=restoreReset;
+}); }
+function restoreReset(){ rw.innerHTML='<button class="btn ghost sm" id="resetBtn" type="button">Reset</button>'; bindReset(); }
+bindReset();
+
+
+/* Save a PDF: uses the Claude app's download bridge when present, otherwise a normal browser download (standalone). */
+async function savePDF(bytes, name){
+  var blob=new Blob([bytes],{type:"application/pdf"});
+  if(window.claude && window.claude.use){
+    try{ var dl=await window.claude.use("downloads"); if(dl){ await dl.save({filename:name, data:blob}); return; } }
+    catch(err){ if(err && (err.code==="declined"||err.code==="rate_limited")) throw err; }
+  }
+  var url=URL.createObjectURL(blob), a=document.createElement("a");
+  a.href=url; a.download=name; a.style.display="none";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 10000);
+}
+/* ---------- PDF ---------- */
+document.getElementById("pdfBtn").addEventListener("click", async function(){
+  var btn=this;
+  if(!window.jspdf){ toast("The PDF tool is still loading. Try again in a moment."); return; }
+  btn.disabled=true; btn.textContent="Building PDF...";
+  try{
+    var bytes = buildPDF();
+    var name = (val("centerName")||"My Center").replace(/[^\w\- ]+/g,"").trim() + " - First 30 Days Family Experience Map.pdf";
+    await savePDF(bytes, name);
+    toast("Your PDF is saved.");
+  }catch(err){
+    var c = err && err.code;
+    if(c==="declined") toast("Download cancelled.");
+    else if(c==="rate_limited") toast("A save prompt is already open.");
+    else toast("The PDF couldn't be saved here. Your work is still saved in this browser.");
+  }finally{ btn.disabled=false; btn.textContent="Download my PDF"; }
+});
+
+function buildPDF(){
+  var J = window.jspdf.jsPDF, doc = new J({unit:"pt", format:"letter"});
+  var W=612, M=48, y=0;
+  var P=[61,57,115], PU=[152,149,211], G=[208,153,99], GI=[154,99,48], INK=[36,34,59], MU=[102,99,127], LAV=[243,242,252];
+  function footer(){ var n=doc.getNumberOfPages(); for(var i=1;i<=n;i++){ doc.setPage(i); doc.setDrawColor(G[0],G[1],G[2]); doc.setLineWidth(1); doc.line(M,752,W-M,752); doc.setFont("times","italic"); doc.setFontSize(11); doc.setTextColor(P[0],P[1],P[2]); doc.text("consultingwithajr.com",M,768); doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(MU[0],MU[1],MU[2]); doc.text("The First 30 Days Family Experience Map  |  Page "+i+" of "+n, W-M, 768, {align:"right"}); } }
+  function need(h){ if(y+h>730){ doc.addPage(); y=56; } }
+  function h2(t){ need(60); y+=10; doc.setFont("times","bolditalic"); doc.setFontSize(21); doc.setTextColor(P[0],P[1],P[2]); doc.text(t,M,y); y+=8; doc.setDrawColor(PU[0],PU[1],PU[2]); doc.setLineWidth(1.2); doc.line(M,y,M+60,y); y+=18; }
+  function para(t,opt){ opt=opt||{}; doc.setFont("helvetica",opt.bold?"bold":"normal"); doc.setFontSize(opt.size||10.5); var c=opt.color||INK; doc.setTextColor(c[0],c[1],c[2]); var lines=doc.splitTextToSize(t, W-2*M-(opt.indent||0)); lines.forEach(function(l){ need(15); doc.text(l, M+(opt.indent||0), y); y+=(opt.lh||14.5); }); y+=(opt.after==null?6:opt.after); }
+  function table(head, body, widths){ doc.autoTable({startY:y, head:[head], body:body, margin:{left:M,right:M,bottom:70}, styles:{font:"helvetica",fontSize:8.5,cellPadding:5,textColor:INK,lineColor:[228,226,239],lineWidth:.5,valign:"top"}, headStyles:{fillColor:LAV,textColor:P,fontStyle:"bold"}, alternateRowStyles:{fillColor:[252,252,254]}, columnStyles:widths||{}}); y=doc.lastAutoTable.finalY+18; }
+
+  // cover band
+  doc.setFillColor(LAV[0],LAV[1],LAV[2]); doc.rect(0,0,W,190,"F");
+  doc.setFillColor(G[0],G[1],G[2]); doc.rect(0,190,W,4,"F");
+  doc.setFont("helvetica","bold"); doc.setFontSize(9); doc.setTextColor(GI[0],GI[1],GI[2]); doc.text("CLOSING THE MARKETING-TO-EXPERIENCE GAP  |  CONSULTING WITH AJR", M, 52);
+  doc.setFont("times","italic"); doc.setFontSize(38); doc.setTextColor(P[0],P[1],P[2]); doc.text("The First 30 Days", M, 100);
+  doc.setFont("times","bold"); doc.setFontSize(20); doc.text("Family Experience Map™", M, 128);
+  doc.setFont("helvetica","normal"); doc.setFontSize(11); doc.setTextColor(INK[0],INK[1],INK[2]);
+  doc.text((val("centerName")||"Your Center")+"   |   "+new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})+"   |   Workbook "+document.getElementById("progNum").textContent+" complete", M, 160);
+  y=230;
+
+  h2("Are You Ready?");
+  var rdone = READY.filter(function(_,i){return document.getElementById("rd"+i).checked;});
+  para(document.querySelector("#readyOut .lvl").textContent, {bold:true, color:P, size:12});
+  para(document.querySelector("#readyOut p").textContent);
+  table(["Readiness area","Status"], READY.map(function(r,i){ return [r[0], document.getElementById("rd"+i).checked?"In place":"Needs work"]; }), {0:{cellWidth:340}});
+
+  h2("Stage Playbook: Standards In Place");
+  table(["Stage","Standard","Delivered every time"], [].concat.apply([], STAGES.map(function(s,si){ return s.checks.map(function(c,ci){ return [s.t, c, document.getElementById("st"+si+"_"+ci).checked?"Yes":""]; }); })), {0:{cellWidth:70,fontStyle:"bold",textColor:P},2:{cellWidth:90}});
+
+  h2("Implementation Map");
+  table(["When","Touchpoint","Owner","Trigger","If missed, who notices","Memory","Me","Installed"], MAP.map(function(m,i){
+    return [m[0], m[1], val("mo"+i)||m[3], val("mt"+i)||m[4], val("mw"+i)||m[5], document.getElementById("mm"+i).checked?"O":"", document.getElementById("ms"+i).checked?"*":"", document.getElementById("mi"+i).checked?"Yes":""];
+  }), {0:{cellWidth:62},1:{cellWidth:92},5:{cellWidth:40,halign:"center"},6:{cellWidth:28,halign:"center"},7:{cellWidth:44,halign:"center"}});
+  para("Your gap: "+document.getElementById("gMem").textContent+" touchpoints run on memory, "+document.getElementById("gMe").textContent+" depend on you, "+document.getElementById("gIn").textContent+" fully installed.", {bold:true,color:P});
+
+  h2("Family Experience Script Bank");
+  SCRIPTS.forEach(function(s){ need(50); para(s[0].toUpperCase()+"  |  "+s[1], {bold:true, size:9.5, color:GI, after:2}); para(fillScript(s[2],false), {size:10, after:10}); });
+
+  h2("30-Day Experience Check-In");
+  QS.forEach(function(q,i){ para((i+1)+". "+q[0], {bold:true, size:10.5, color:P, after:2}); para(val("q"+i)||"__________________________________________", {size:10, color:val("q"+i)?INK:MU, after:8}); });
+  var route = document.getElementById("route_adv").checked ? "Advocate path: ask for a Google review and a specific referral within 48 hours." : document.getElementById("route_rep").checked ? "Repair path." : "Route not selected yet.";
+  para("Route: "+route, {bold:true});
+  if(document.getElementById("route_rep").checked) table(["Gap","Owner","Fixed by","Action + follow-up"], [[val("rep_gap"),val("rep_owner"),val("rep_due"),val("rep_action")]]);
+
+  h2("Promise-to-Proof Audit");
+  var lab={g:"Proven every time",y:"Sometimes",r:"Not yet","":""};
+  table(["What my marketing promises","Where a family sees proof","Strength"], PA.map(function(p,i){ return [val("pa"+i), val("pb"+i), lab[val("pc"+i)]]; }), {2:{cellWidth:100}});
+
+  h2("The Cost of a Lost Family");
+  table(["Input","Value"], [["Average weekly tuition",money(num("c_tuition"))],["Cost to land one enrollment",money(num("c_acq"))],["Months a family normally stays",String(num("c_months"))],["Families lost in first 90 days (last year)",String(num("c_lost"))],["Lifetime tuition value of one family",document.getElementById("cLtv").textContent],["Revenue walking out the door each year",document.getElementById("cBig").textContent],["Recovered if the map saves half",document.getElementById("cSave").textContent]], {0:{cellWidth:300}});
+
+  h2("Family Experience Dashboard"+(val("d_month")?" | "+val("d_month"):""));
+  table(["Metric","Number","Result"], DASH.map(function(d){ var r=document.getElementById(d[0]+"_r").textContent.replace(/(completion|of new families)/," $1 "); return [d[1], val(d[0]), r]; }), {0:{cellWidth:290}});
+
+  h2("Build Your System");
+  table(["Touchpoint I'm installing","Owner","Live by"], [1,2,3].map(function(n){ return [val("pl"+n),val("pl"+n+"o"),val("pl"+n+"d")]; }));
+  para("Monday morning: "+(val("pl_monday")||"________________"), {bold:true});
+  para("Who trains the team: "+(val("pl_train")||"________________"));
+
+  need(90); y+=16;
+  doc.setFont("times","bold"); doc.setFontSize(17); doc.setTextColor(P[0],P[1],P[2]); doc.text("Marketing got them here.", W/2, y, {align:"center"}); y+=24;
+  doc.setFont("times","italic"); doc.setTextColor(GI[0],GI[1],GI[2]); doc.text("Experience makes them stay.", W/2, y, {align:"center"}); y+=24;
+  doc.setFont("times","bold"); doc.setTextColor(P[0],P[1],P[2]); doc.text("Systems make it repeatable.", W/2, y, {align:"center"});
+  y+=34; need(40); doc.setFont("helvetica","bold"); doc.setFontSize(10.5); doc.setTextColor(GI[0],GI[1],GI[2]); doc.text("Not sure which program fits? Book your free 15-minute Best-Fit Call:", W/2, y, {align:"center"}); y+=16;
+  doc.setTextColor(P[0],P[1],P[2]); doc.textWithLink("letsmeet.io/aliyajohnsonroberts/15min-best-fit-call", W/2-doc.getTextWidth("letsmeet.io/aliyajohnsonroberts/15min-best-fit-call")/2, y, {url:"https://letsmeet.io/aliyajohnsonroberts/15min-best-fit-call"}); y+=15;
+  doc.setFont("helvetica","normal"); doc.setTextColor(MU[0],MU[1],MU[2]); doc.text("info@aliyajohnsonroberts.com  |  consultingwithajr.com", W/2, y, {align:"center"});
+
+  footer();
+  return doc.output("arraybuffer");
+}
+
+update();
+})();
+</script>
+
+</body></html>
